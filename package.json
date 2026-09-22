@@ -1,0 +1,12 @@
+{
+  "name": "jones-stephens-assessment",
+  "private": true,
+  "scripts": {
+    "build": "npx @tailwindcss/cli -i ./assets/src/css/app.css -o ./assets/dist/css/app.css --minify",
+    "dev": "npx @tailwindcss/cli -i ./assets/src/css/app.css -o ./assets/dist/css/app.css --watch"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.0.0",
+    "tailwindcss": "^4.0.0"
+  }
+}

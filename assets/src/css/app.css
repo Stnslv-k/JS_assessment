@@ -1,0 +1,198 @@
+@import "tailwindcss";
+
+@theme {
+    --color-brand-blue: #155ca8;
+    --color-header-gray: #eef1f3;
+    --color-ink: #22262a;
+}
+
+@layer base {
+    body {
+        @apply m-0 bg-white text-ink;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    button,
+    a {
+        @apply outline-offset-4;
+    }
+}
+
+@layer components {
+    .site-header {
+        @apply relative z-50 border-t-4 border-brand-blue bg-white shadow-sm;
+    }
+
+    .site-header__main {
+        @apply mx-auto flex h-24 max-w-[1440px] items-center justify-between px-8;
+    }
+
+    .site-branding__fallback {
+        @apply flex items-center gap-3 font-bold leading-none text-ink no-underline;
+    }
+
+    .site-branding__mark {
+        @apply grid h-14 w-14 place-items-center rounded-md bg-brand-blue text-lg font-bold text-white;
+    }
+
+    .site-branding__name {
+        @apply text-2xl;
+    }
+
+    .primary-menu {
+        @apply m-0 flex list-none items-center gap-10 p-0;
+    }
+
+    .primary-menu a {
+        @apply font-semibold text-ink no-underline hover:text-brand-blue;
+    }
+
+    .shop-bar {
+        @apply flex min-h-20 items-center gap-10 bg-header-gray px-8;
+    }
+
+    .shop-toggle {
+        @apply inline-flex shrink-0 items-center gap-3 rounded-full border-0 bg-brand-blue px-7 py-4 text-base font-bold text-white;
+    }
+
+    .featured-categories {
+        @apply flex min-w-0 flex-1 items-center justify-center gap-8;
+    }
+
+    .featured-categories__menu {
+        @apply m-0 flex list-none flex-wrap items-center justify-center gap-x-8 gap-y-2 p-0;
+    }
+
+    .featured-categories__menu a {
+        @apply font-semibold text-brand-blue no-underline;
+    }
+
+    .shop-panel {
+        @apply absolute left-0 right-0 top-full flex min-h-[520px];
+    }
+
+    .shop-panel__menu {
+        @apply w-[32rem] max-w-[42vw] bg-white px-12 py-10;
+    }
+
+    .shop-panel__title {
+        @apply mb-8 mt-0 text-xl font-bold text-brand-blue;
+    }
+
+    .shop-menu {
+        @apply m-0 list-none p-0;
+    }
+
+    .shop-menu__item > a {
+        @apply flex min-h-14 items-center justify-between gap-4 py-3 text-lg font-semibold text-ink no-underline;
+    }
+
+    .shop-menu__arrow {
+        @apply grid h-9 w-9 shrink-0 place-items-center rounded-full bg-header-gray text-2xl text-brand-blue;
+    }
+
+    .shop-menu .sub-menu {
+        @apply mb-2 ml-5 list-none border-l border-gray-200 pl-5;
+    }
+
+    .shop-menu .sub-menu a {
+        @apply block py-2 text-sm text-gray-600 no-underline hover:text-brand-blue;
+    }
+
+    .shop-panel__backdrop {
+        @apply relative flex-1 border-0 bg-black/95;
+    }
+
+    .shop-panel__close {
+        @apply absolute left-6 top-3 text-5xl font-light text-white;
+    }
+
+    .site-header__mobile-actions,
+    .mobile-navigation {
+        @apply hidden;
+    }
+
+    .assessment-preview {
+        @apply min-h-[70vh] bg-gray-100 px-6 py-24;
+    }
+
+    .assessment-preview__inner {
+        @apply mx-auto max-w-4xl;
+    }
+
+    .assessment-preview__label {
+        @apply font-semibold uppercase tracking-wider text-brand-blue;
+    }
+
+    .assessment-preview h1 {
+        @apply mb-5 mt-2 text-5xl font-bold;
+    }
+
+    .assessment-preview p {
+        @apply max-w-2xl text-lg leading-8 text-gray-600;
+    }
+
+    @media (max-width: 1023px) {
+        .site-header {
+            @apply border-t-0;
+        }
+
+        .site-header__main {
+            @apply h-20 px-4;
+        }
+
+        .site-branding__mark {
+            @apply h-11 w-11 text-sm;
+        }
+
+        .site-branding__name {
+            @apply text-lg;
+        }
+
+        .primary-navigation,
+        .shop-bar {
+            @apply hidden;
+        }
+
+        .site-header__mobile-actions {
+            @apply flex items-center gap-3;
+        }
+
+        .shop-toggle--mobile {
+            @apply px-5 py-3 text-sm;
+        }
+
+        .mobile-menu-toggle {
+            @apply flex h-11 w-11 flex-col items-center justify-center gap-1.5 border-0 bg-transparent;
+        }
+
+        .mobile-menu-toggle span {
+            @apply h-0.5 w-7 bg-gray-600;
+        }
+
+        .mobile-navigation {
+            @apply absolute left-0 right-0 top-full block bg-white px-6 py-4 shadow-lg;
+        }
+
+        .mobile-navigation__menu,
+        .mobile-navigation .primary-menu {
+            @apply m-0 block list-none p-0;
+        }
+
+        .mobile-navigation a {
+            @apply block border-b border-gray-100 py-4 font-semibold text-ink no-underline;
+        }
+
+        .shop-panel {
+            @apply fixed bottom-0 top-20 block overflow-y-auto bg-white;
+        }
+
+        .shop-panel__menu {
+            @apply w-full max-w-none px-6 py-8;
+        }
+
+        .shop-panel__backdrop {
+            @apply hidden;
+        }
+    }
+}
