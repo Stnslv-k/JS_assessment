@@ -3,18 +3,28 @@ const shopMenuPanel = document.querySelector('[data-shop-panel]');
 const shopMenuCloseButton = document.querySelector('[data-shop-close]');
 const mobileMenuButton = document.querySelector('[data-mobile-menu-toggle]');
 const mobileMenu = document.querySelector('[data-mobile-menu]');
+const desktopMediaQuery = window.matchMedia('(min-width: 67.5rem)');
+
+function setShopMenuDisplay(isOpen) {
+    if (!shopMenuPanel) {
+        return;
+    }
+
+    shopMenuPanel.classList.toggle('hidden', !isOpen);
+    shopMenuPanel.classList.toggle('block', isOpen && !desktopMediaQuery.matches);
+    shopMenuPanel.classList.toggle('grid', isOpen && desktopMediaQuery.matches);
+}
 
 function setShopMenuState(isOpen) {
     if (!shopMenuPanel) {
         return;
     }
 
-    shopMenuPanel.hidden = !isOpen;
-    document.body.classList.toggle('navigation-open', isOpen);
+    setShopMenuDisplay(isOpen);
+    document.body.classList.toggle('overflow-hidden', isOpen);
 
     shopMenuButtons.forEach((button) => {
         button.setAttribute('aria-expanded', String(isOpen));
-        button.classList.toggle('is-open', isOpen);
     });
 
     if (isOpen) {
@@ -27,9 +37,8 @@ function setMobileMenuState(isOpen) {
         return;
     }
 
-    mobileMenu.hidden = !isOpen;
+    mobileMenu.classList.toggle('hidden', !isOpen);
     mobileMenuButton.setAttribute('aria-expanded', String(isOpen));
-    mobileMenuButton.classList.toggle('is-open', isOpen);
 
     if (isOpen) {
         setShopMenuState(false);
@@ -61,8 +70,16 @@ document.addEventListener('keydown', (event) => {
     setMobileMenuState(false);
 });
 
-window.matchMedia('(min-width: 1024px)').addEventListener('change', (event) => {
-    if (event.matches) {
+desktopMediaQuery.addEventListener('change', () => {
+    const isShopMenuOpen = Array.from(shopMenuButtons).some(
+        (button) => button.getAttribute('aria-expanded') === 'true'
+    );
+
+    if (isShopMenuOpen) {
+        setShopMenuDisplay(true);
+    }
+
+    if (desktopMediaQuery.matches) {
         setMobileMenuState(false);
     }
 });

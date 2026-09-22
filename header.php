@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php wp_head(); ?>
 </head>
-<body <?php body_class(); ?>>
+<body <?php body_class( 'm-0 bg-white text-ink' ); ?>>
 <?php wp_body_open(); ?>
 
 <?php get_template_part( 'template-parts/header/navigation' ); ?>
 
-<main class="site-main">
+<main class="min-h-screen bg-white">
